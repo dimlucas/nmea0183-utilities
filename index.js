@@ -44,6 +44,21 @@
   exports.valid = function (sentence, validateChecksum) {
     sentence = String(sentence).trim();
 
+    let delim = null;
+
+    if (sentence.includes("$")) {
+      delim = "$";
+    }
+    else if (sentence.includes("!")) {
+      delim = "!";
+    }
+    else {
+      return false;
+    }
+
+    sentence = `${delim}${sentence.split(delim)[1]}`;
+
+
     if (sentence === "") {
       return false;
     }
